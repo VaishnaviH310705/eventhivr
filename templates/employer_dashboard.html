@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Employer Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4><i class="fas fa-briefcase"></i> Your Job Postings</h4>
+                <a href="{{ url_for('post_job') }}" class="btn btn-sm btn-primary">
+                    <i class="fas fa-plus"></i> Post New Job
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Applications</th>
+                                <th>Posted</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for job in jobs %}
+                            <tr>
+                                <td>{{ job.title }}</td>
+                                <td>
+                                    <span class="badge bg-primary rounded-pill">
+                                        {{ job.applicant_count }}
+                                    </span>
+                                </td>
+                                <td>{{ job.posted_at.strftime('%b %d, %Y') }}</td>
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('job_details', job_id=job.id) }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center py-4">
+                                    <i class="fas fa-briefcase fa-3x text-muted mb-3"></i>
+                                    <h5>No jobs posted yet</h5>
+                                    <p class="text-muted">Get started by posting your first job</p>
+                                    <a href="{{ url_for('post_job') }}" class="btn btn-primary">
+                                        <i class="fas fa-plus"></i> Post a Job
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-chart-pie"></i> Quick Stats</h4>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6>Total Jobs Posted</h6>
+                    <h3 class="text-primary">{{ jobs|length }}</h3>
+                </div>
+                <div class="mb-3">
+                    <h6>Total Applications</h6>
+                    <h3 class="text-success">
+                        {{ jobs|sum(attribute='applicant_count') }}
+                    </h3>
+                </div>
+                <div class="mb-3">
+                    <h6>Active Jobs</h6>
+                    <h3 class="text-info">{{ jobs|length }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

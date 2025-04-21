@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section text-center py-5 bg-light rounded-3">
+    <h1 class="display-4">Find Your Dream Job</h1>
+    <p class="lead">Join thousands of companies and job seekers on SkillHive</p>
+    <div class="mt-4">
+        {% if not session.get('user_id') %}
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-2">
+                <i class="fas fa-user-plus"></i> Register
+            </a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+        {% else %}
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-briefcase fa-3x text-primary mb-3"></i>
+                <h3>For Job Seekers</h3>
+                <p>Find the perfect job match with our AI-powered recommendations</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-building fa-3x text-primary mb-3"></i>
+                <h3>For Employers</h3>
+                <p>Post jobs and find the best talent for your company</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                <h3>Real-time Stats</h3>
+                <p>Track your applications and job postings in real-time</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

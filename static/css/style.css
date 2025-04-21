@@ -1,0 +1,44 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Cards */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+.btn-apply {
+    transition: all 0.3s ease;
+}
+.btn-apply:hover {
+    transform: translateY(-2px);
+}
+
+/* Job Cards */
+.job-title {
+    color: #2c3e50;
+}
+.company-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .job-card {
+        margin-bottom: 15px;
+    }
+}

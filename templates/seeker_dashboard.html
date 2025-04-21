@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Seeker Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container my-4">
+        <!-- Profile Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4><i class="fas fa-user-check"></i> Profile Strength</h4>
+                <div class="progress mt-3" style="height: 25px;">
+                    <div class="progress-bar" style="width: 75%">75% Complete</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Search -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <input type="text" id="job-search" class="form-control mb-3" placeholder="Search jobs...">
+                <select class="form-select" id="location-filter">
+                    <option value="">All Locations</option>
+                    <option>Remote</option>
+                    <option>On-site</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Job Listings -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4><i class="fas fa-briefcase"></i> Recommended Jobs</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3 job-card">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>Python Developer</h5>
+                                <p class="text-muted">Tech Solutions Inc.</p>
+                                <span class="badge bg-light text-dark mb-2">
+                                    <i class="fas fa-map-marker-alt"></i> Remote
+                                </span>
+                                <p>Looking for experienced Python developer with Django knowledge...</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary btn-apply" data-job-id="1">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple Job Search
+        const jobSearch = document.getElementById('job-search');
+        if (jobSearch) {
+            jobSearch.addEventListener('input', function() {
+                const term = this.value.toLowerCase();
+                document.querySelectorAll('.job-card').forEach(card => {
+                    const title = card.querySelector('h5').textContent.toLowerCase();
+                    card.style.display = title.includes(term) ? 'block' : 'none';
+                });
+            });
+        }
+
+        // Apply Buttons
+        document.querySelectorAll('.btn-apply').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.textContent = 'Applied!';
+                this.classList.add('disabled', 'btn-success');
+            });
+        });
+    </script>
+</body>
+</html>

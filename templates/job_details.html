@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ job[1] }}</h2>
+<p><strong>Company:</strong> {{ job[2] }}</p>
+<p><strong>Location:</strong> {{ job[3] }}</p>
+<p><strong>Salary:</strong> {{ job[4] }}</p>
+<p><strong>Description:</strong></p>
+<p>{{ job[5] }}</p>
+{% if session['role'] == 'seeker' %}
+    <a class="btn btn-primary" href="/apply/{{ job[0] }}">Apply</a>
+{% endif %}
+{% endblock %}
